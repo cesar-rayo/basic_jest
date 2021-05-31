@@ -61,3 +61,30 @@ test('There is no I in team', () =>{
     expect('team').not.toMatch(/I/);
     expect('team').toMatch(/am/);
 })
+
+// Arrays
+test('Admin should be in usernames', () =>{
+    usernames = ['user1', 'user2', 'user3'];
+    expect(usernames).toContain('user2');
+    expect(usernames).not.toContain('user4');
+})
+
+// Async Data => Api Request + Promise
+test('Validate username fetched', () =>{
+    // Declares the numbre of assertions it will validate
+    expect.assertions(1);
+    // Returns the assertion
+    return functions.fetchUser()
+        .then(data => {
+            expect(data.name).toEqual('Leanne Graham');
+        });
+})
+
+// Async Data => Api Request + Await
+test('Validate username fetched with Await', async () =>{
+    // Declares the numbre of assertions it will validate
+    expect.assertions(1);
+    // Returns the assertion
+    const data = await functions.fetchUser();
+    expect(data.name).toEqual('Leanne Graham');
+})

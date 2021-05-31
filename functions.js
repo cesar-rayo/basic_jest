@@ -1,3 +1,5 @@
+const { default: axios } = require("axios");
+
 const functions = {
 
     add: function(num1, num2){
@@ -17,7 +19,11 @@ const functions = {
         const user = { firstName: 'First Name'};
         user['lastName'] = 'Last Name';
         return user;
-    }
+    },
+
+    fetchUser: () => axios.get('https://jsonplaceholder.typicode.com/users/1')
+        .then(res => res.data)
+        .catch(err => 'error')
 }
 
 module.exports = functions;
